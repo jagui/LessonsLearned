@@ -1,0 +1,12 @@
+syntax: glob
+packages
+TestResults/*
+*[Bb]in/
+*[Dd]ebug/
+*[Oo]bj/
+*[Rr]elease/
+*_[Rr]e[Ss]harper.*/
+*.docstates
+*.user
+*.suo
+*.xap

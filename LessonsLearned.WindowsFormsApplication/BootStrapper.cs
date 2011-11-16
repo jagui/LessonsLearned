@@ -1,23 +1,28 @@
 using System.Windows.Forms;
 using StructureMap;
+using Microsoft.Practices.ServiceLocation;
+using StructureMap.ServiceLocatorAdapter;
 
-namespace SimpleOrgChart
+namespace LessonsLearned.WindowsFormsApplication
 {
-	public class BootStrapper
-	{
+    public class BootStrapper
+    {
 
-		private IContainer Container { get; set; }
+        private IContainer Container { get; set; }
 
-		public BootStrapper(IContainer container)
-		{
-			Container = container;
-		}
+        public BootStrapper(IContainer container)
+        {
+            Container = container;
+        }
 
-		public ApplicationContext GetAppContext()
-		{
-			Container.Configure(c => c.AddRegistry<DefaultRegistry>());
-			return Container.GetInstance<ApplicationContext>();
-		}
+        public ApplicationContext GetAppContext()
+        {
+            Container.Configure(c => c.AddRegistry<DefaultRegistry>());
+            var smServiceLocator = new StructureMapServiceLocator(Container);
+            ServiceLocator.SetLocatorProvider(() => smServiceLocator);
+            Container.Inject(ServiceLocator.Current);
+            return Container.GetInstance<ApplicationContext>();
+        }
 
-	}
+    }
 }

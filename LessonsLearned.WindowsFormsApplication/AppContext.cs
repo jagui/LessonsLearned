@@ -1,31 +1,28 @@
 using System.Windows.Forms;
-using SimpleOrgChart.App;
-using SimpleOrgChart.View;
 using StructureMap;
+using LessonsLearned.WindowsFormsApplication.VerificationWorkflow;
 
-namespace SimpleOrgChart
+namespace LessonsLearned.WindowsFormsApplication
 {
-	public class AppContext : ApplicationContext
-	{
-		
-		private IContainer Container { get; set; }
+    public class AppContext : ApplicationContext
+    {
 
-		public AppContext(IContainer container)
-		{
-			Container = container;
-			MainForm = GetMainForm();
-		}
+        private IContainer Container { get; set; }
 
-		private Form GetMainForm()
-		{
-			MainForm mainForm = new MainForm(Container);
-			Container.Inject<IOrgChartView>(mainForm);
-			
-			OrgChartPresenter presenter = Container.GetInstance<OrgChartPresenter>();
-			presenter.Run();
-			
-			return mainForm;
-		}
+        public AppContext(IContainer container)
+        {
+            Container = container;
+            MainForm = GetMainForm();
+        }
 
-	}
+        private Form GetMainForm()
+        {
+            var mainForm = new VerificationWorkflowForm();
+            Container.Inject<IVerificationWorkflowView>(mainForm);
+            var presenter = Container.GetInstance<VerificationWorkflowPresenter>();
+            presenter.Run();
+            return mainForm;
+        }
+
+    }
 }

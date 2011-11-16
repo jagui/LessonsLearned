@@ -9,36 +9,35 @@ using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
-    public class SearchFormPresenter : ICommand<SearchPersonCommand>
+    public class SearchFormPresenter : ICommand<StartWorkflowCommand>
     {
         private readonly IApplicationController _applicationController;
-        private readonly ISearchFormView _screen;
-
-        private readonly 
-        public SearchFormPresenter(IApplicationController applicationController,ISearchFormView screen)
+        private readonly ISearchFormView _view;
+        public SearchFormPresenter(IApplicationController applicationController, ISearchFormView view)
         {
             _applicationController = applicationController;
-            _screen = screen;
+            _view = view;
+            _view.Presenter = this;
         }
 
         public void Search()
         {
-            Execute(CreateSearchPersonCommand(_screen));
+            _applicationController.Execute(CreateSearchPersonCommand(_view));
         }
 
-        public void Execute(SearchPersonCommand commandData)
+        public void Execute(StartWorkflowCommand commandData)
         {
-            _applicationController.Execute(commandData);
+            _applicationController.ShowInHost(_view);
         }
 
-        private static SearchPersonCommand CreateSearchPersonCommand(ISearchFormView screen)
+        private static SearchPersonCommand CreateSearchPersonCommand(ISearchFormView view)
         {
             return new SearchPersonCommand(
                            new PersonSearchFormDto
                                {
-                                   Forename = screen.FirstName,
-                                   Surname = screen.LastName,
-                                   DateOfBirth = screen.DateOfBirth
+                                   Forename = view.FirstName,
+                                   Surname = view.LastName,
+                                   DateOfBirth = view.DateOfBirth
                                });
         }
     }

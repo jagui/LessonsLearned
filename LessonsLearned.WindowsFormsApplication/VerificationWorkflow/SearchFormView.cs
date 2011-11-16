@@ -9,19 +9,17 @@ using System.Windows.Forms;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
-    public partial class SearchFormView : Form, ISearchFormView
+    public partial class SearchFormView : UserControl, ISearchFormView
     {
-        private readonly SearchFormPresenter _searchFormPresenter;
-
-        public SearchFormView(SearchFormPresenter searchFormPresenter)
+        public SearchFormView()
         {
-            _searchFormPresenter = searchFormPresenter;
             InitializeComponent();
         }
 
         public SearchFormPresenter Presenter
         {
-            get { return _searchFormPresenter; }
+            get;
+            set;
         }
 
         private void SearchButtonClick(object sender, EventArgs e)

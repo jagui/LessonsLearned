@@ -1,24 +1,26 @@
 using System;
-using EventAggregator;
+using LessonsLearned.DomainModel.Common;
 using StructureMap;
 using StructureMap.Interceptors;
+using StructureMap.TypeRules;
+using IEventPublisher = LessonsLearned.Application.EventAggregator.IEventPublisher;
 
 namespace SimpleOrgChart
 {
-	public class EventAggregatorInterceptor : TypeInterceptor
-	{
+    public class EventAggregatorInterceptor : TypeInterceptor
+    {
 
-		public object Process(object target, IContext context)
-		{
-			IEventPublisher eventPublisher = context.GetInstance<IEventPublisher>();
-			eventPublisher.RegisterHandlers(target);
-			return target;
-		}
+        public object Process(object target, IContext context)
+        {
+            IEventPublisher eventPublisher = context.GetInstance<IEventPublisher>();
+            eventPublisher.RegisterHandlers(target);
+            return target;
+        }
 
-		public bool MatchesType(Type type)
-		{
-			bool matchesType = type.ImplementsInterfaceTemplate(typeof(IEventHandler<>));
-			return matchesType;
-		}
-	}
+        public bool MatchesType(Type type)
+        {
+            bool matchesType = type.ImplementsInterfaceTemplate(typeof(IEventHandler<>));
+            return matchesType;
+        }
+    }
 }

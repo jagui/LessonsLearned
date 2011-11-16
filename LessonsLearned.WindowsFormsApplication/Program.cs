@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using LessonsLearned.WindowsFormsApplication;
 using StructureMap;
 
 namespace SimpleOrgChart
@@ -13,9 +14,9 @@ namespace SimpleOrgChart
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			Container ioc = new Container();
-			BootStrapper bootStrapper = new BootStrapper(ioc);
-			ApplicationContext appcontext = bootStrapper.GetAppContext();
+			var ioc = new Container();
+			var bootStrapper = new BootStrapper(ioc);
+			var appcontext = bootStrapper.GetAppContext();
 
 			Application.Run(appcontext);
 		}

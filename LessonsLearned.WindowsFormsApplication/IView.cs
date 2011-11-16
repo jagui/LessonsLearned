@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using LessonsLearned.Application.Controller;
 
 namespace LessonsLearned.WindowsFormsApplication
 {
-    public interface IView<TPresenter>
+
+    public interface IView<TPresenter> : IView
     {
-        TPresenter Presenter { get; }
+        TPresenter Presenter { get; set; }
     }
 }

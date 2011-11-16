@@ -5,11 +5,11 @@ using IEventPublisher = LessonsLearned.Application.EventAggregator.IEventPublish
 
 namespace LessonsLearned.Application.Controller
 {
-    class ApplicationController
+    public class ApplicationController : IApplicationController
     {
         private readonly IServiceLocator _serviceLocator;
         private readonly IEventPublisher _eventPublisher;
-
+        private IHost _host;
 
         public ApplicationController(IServiceLocator serviceLocator, IEventPublisher eventPublisher)
         {
@@ -26,6 +26,16 @@ namespace LessonsLearned.Application.Controller
         public void Raise<T>(T eventData)
         {
             _eventPublisher.Publish(eventData);
+        }
+
+        public void ShowInHost(IView view)
+        {
+            _host.ShowInHost(view);
+        }
+
+        public void SetHost(IHost host)
+        {
+            _host = host;
         }
     }
 }

@@ -31,8 +31,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Juanagui.Repositories.Common">
+      <HintPath>..\packages\Juanagui.Repositories.EntityFramework.1.0\lib\net40\Juanagui.Repositories.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Juanagui.Repositories.EntityFramework">
+      <HintPath>..\packages\Juanagui.Repositories.EntityFramework.1.0\lib\net40\Juanagui.Repositories.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,10 +74,7 @@
     <Compile Include="Workflows\PersonVerification\PersonVerificationWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="F:\git_local\Juanagui.Repositories\Juanagui.Repositories.Common\Juanagui.Repositories.Common.csproj">
-      <Project>{2A5ACACC-D820-49D8-B859-315FBB6483D1}</Project>
-      <Name>Juanagui.Repositories.Common</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

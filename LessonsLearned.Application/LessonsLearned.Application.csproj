@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Controller\ApplicationController.cs" />
     <Compile Include="Controller\IApplicationController.cs" />
+    <Compile Include="Controller\IHost.cs" />
+    <Compile Include="Controller\IView.cs" />
     <Compile Include="EventAggregator\EventHandlerOptions.cs" />
     <Compile Include="EventAggregator\EventHandlers.cs" />
     <Compile Include="EventAggregator\EventPublisher.cs" />

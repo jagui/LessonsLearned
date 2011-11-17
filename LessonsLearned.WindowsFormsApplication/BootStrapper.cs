@@ -2,6 +2,8 @@ using System.Windows.Forms;
 using StructureMap;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap.ServiceLocatorAdapter;
+using LessonsLearner.DataAccess;
+using System.Data.Entity;
 
 namespace LessonsLearned.WindowsFormsApplication
 {
@@ -21,6 +23,7 @@ namespace LessonsLearned.WindowsFormsApplication
             var smServiceLocator = new StructureMapServiceLocator(Container);
             ServiceLocator.SetLocatorProvider(() => smServiceLocator);
             Container.Inject(ServiceLocator.Current);
+            Database.SetInitializer(new LessonsLearnedDbContextInitializer());
             return Container.GetInstance<ApplicationContext>();
         }
 

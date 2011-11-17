@@ -19,8 +19,11 @@ namespace LessonsLearned.Application.Controller
 
         public void Execute<T>(T commandData)
         {
-            var command = _serviceLocator.GetInstance<ICommand<T>>();
-            command.Execute(commandData);
+            var commands = _serviceLocator.GetAllInstances<ICommand<T>>();
+            foreach (var command in commands)
+            {
+                command.Execute(commandData);
+            }
         }
 
         public void Raise<T>(T eventData)

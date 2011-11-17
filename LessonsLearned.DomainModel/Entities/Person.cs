@@ -8,7 +8,7 @@ namespace LessonsLearned.DomainModel.Entities
         public long Id { get; set; }
         public DateTime DateOfBirth { get; set; }
         public String Forename { get; set; }
-        public String Surename { get; set; }
+        public String Surname { get; set; }
         public String Comments { get; set; }
     }
 }

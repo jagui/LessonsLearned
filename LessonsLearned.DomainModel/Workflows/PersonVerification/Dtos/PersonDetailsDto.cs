@@ -20,14 +20,14 @@ namespace LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos
 
         public string FullName
         {
-            get { return String.Format("{0}, {1}", _person.Surename, _person.Forename); }
+            get { return String.Format("{0}, {1}", _person.Surname, _person.Forename); }
         }
 
         public String Comments { get { return _person.Comments; } }
 
         public override string ToString()
         {
-            return String.Format("{0}, {1}: {2}", _person.Surename, _person.Forename, _person.Comments);
+            return String.Format("{0}, {1}: {2}", _person.Surname, _person.Forename, _person.Comments);
         }
 
         public static readonly PersonDetailsDto NotFound = new NotFoundPersonDetailsDto();

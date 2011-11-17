@@ -52,7 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Workflows\PersonEnrolment\PersonEnrolmentWorkflow.cs" />
     <Compile Include="Workflows\PersonVerification\Activities\SearchPersonDetailsActivity.cs" />
+    <Compile Include="Workflows\PersonEnrolment\Commands\EnrolPersonCommand.cs" />
+    <Compile Include="Workflows\PersonVerification\Dtos\EnrolPersonFormDto.cs" />
     <Compile Include="Workflows\PersonVerification\Events\CandidatePeopleFoundEvent.cs" />
     <Compile Include="Common\Activity.cs" />
     <Compile Include="Common\ActivityFinishedEventArgs.cs" />

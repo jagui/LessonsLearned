@@ -24,7 +24,7 @@ namespace LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos
 
         public override string ToString()
         {
-            return String.Format("{0}, {1}", _person.Surename, _person.Forename);
+            return String.Format("{0}, {1}", _person.Surname, _person.Forename);
         }
     }
 }

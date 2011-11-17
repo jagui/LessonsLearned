@@ -17,9 +17,9 @@ namespace LessonsLearned.WindowsFormsApplication
 
         private Form GetMainForm()
         {
-            var mainForm = new VerificationWorkflowForm();
-            Container.Inject<IVerificationWorkflowView>(mainForm);
-            var presenter = Container.GetInstance<VerificationWorkflowPresenter>();
+            var mainForm = new WorkflowChooserView();
+            Container.Inject<IWorkflowChooserView>(mainForm);
+            var presenter = Container.GetInstance<WorkflowChooserPresenter>();
             presenter.Run();
             return mainForm;
         }

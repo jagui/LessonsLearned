@@ -9,7 +9,7 @@ using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
-    public class SearchFormPresenter : ICommand<StartWorkflowCommand>
+    public class SearchFormPresenter : ICommand<StartSearchCommand>
     {
         private readonly IApplicationController _applicationController;
         private readonly ISearchFormView _view;
@@ -25,7 +25,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _applicationController.Execute(CreateSearchPersonCommand(_view));
         }
 
-        public void Execute(StartWorkflowCommand commandData)
+        public void Execute(StartSearchCommand commandData)
         {
             _applicationController.ShowInHost(_view);
         }

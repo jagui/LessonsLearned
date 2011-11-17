@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersonDbContextInitializer.cs" />
+    <Compile Include="LessonsLearnedDbContextInitializer.cs" />
     <Compile Include="LessonsLearnedDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

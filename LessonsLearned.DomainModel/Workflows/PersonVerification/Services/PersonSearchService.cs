@@ -18,7 +18,7 @@ namespace LessonsLearned.DomainModel.Workflows.PersonVerification.Services
         {
             var candidates = _personRepository.Query().
                 Where(p => p.Forename.Equals(personSearchFormDto.Forename) &&
-                           p.Surename.Equals(personSearchFormDto.Surname));
+                           p.Surname.Equals(personSearchFormDto.Surname));
 
             if (personSearchFormDto.DateOfBirth != null)
                 candidates = candidates.Where(p => p.DateOfBirth.Equals(personSearchFormDto.DateOfBirth.Value));

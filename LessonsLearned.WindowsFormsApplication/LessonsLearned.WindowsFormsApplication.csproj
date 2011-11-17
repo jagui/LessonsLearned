@@ -70,9 +70,20 @@
     <Compile Include="AppContext.cs" />
     <Compile Include="BootStrapper.cs" />
     <Compile Include="DefaultRegistry.cs" />
+    <Compile Include="EnrolmentWorkflow\EnrolmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnrolmentWorkflow\EnrolmentForm.Designer.cs">
+      <DependentUpon>EnrolmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnrolmentWorkflow\EnrolmentWorkflowPresenter.cs" />
+    <Compile Include="EnrolmentWorkflow\IEnrolmentFormView.cs" />
+    <Compile Include="EnrolmentWorkflow\StartEnrolmentWorkflowCommand.cs" />
     <Compile Include="EventAggregatorInterceptor.cs" />
     <Compile Include="IModalView.cs" />
+    <Compile Include="IStartWorkflowCommand.cs" />
     <Compile Include="IView.cs" />
+    <Compile Include="IWorkflowChooserView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VerificationWorkflow\ISearchFormView.cs" />
@@ -85,7 +96,8 @@
     <Compile Include="VerificationWorkflow\SearchFormView.Designer.cs">
       <DependentUpon>SearchFormView.cs</DependentUpon>
     </Compile>
-    <Compile Include="VerificationWorkflow\StartWorkflowCommand.cs" />
+    <Compile Include="VerificationWorkflow\StartVerificationWorkflowCommand.cs" />
+    <Compile Include="VerificationWorkflow\StartSearchCommand.cs" />
     <Compile Include="VerificationWorkflow\VerificationWorkflowForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +105,16 @@
       <DependentUpon>VerificationWorkflowForm.cs</DependentUpon>
     </Compile>
     <Compile Include="VerificationWorkflow\VerificationWorkflowPresenter.cs" />
+    <Compile Include="WorkflowChooserPresenter.cs" />
+    <Compile Include="WorkflowChooserView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkflowChooserView.Designer.cs">
+      <DependentUpon>WorkflowChooserView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EnrolmentWorkflow\EnrolmentForm.resx">
+      <DependentUpon>EnrolmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VerificationWorkflow\VerificationWorkflowForm.resx">
       <DependentUpon>VerificationWorkflowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkflowChooserView.resx">
+      <DependentUpon>WorkflowChooserView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -135,6 +160,7 @@
       <Name>LessonsLearner.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

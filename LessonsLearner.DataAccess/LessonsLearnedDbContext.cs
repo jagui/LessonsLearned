@@ -3,7 +3,7 @@ using LessonsLearned.DomainModel.Entities;
 
 namespace LessonsLearner.DataAccess
 {
-    public class PersonDbContext : DbContext
+    public class LessonsLearnedDbContext : DbContext
     {
         public DbSet<Person> People { get; set; }
     }

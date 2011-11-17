@@ -18,11 +18,6 @@ namespace LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos
             get { return _person.Id; }
         }
 
-        public Bitmap Photo
-        {
-            get { return _person.Photo; }
-        }
-
         public string FullName
         {
             get { return String.Format("{0}, {1}", _person.Surename, _person.Forename); }

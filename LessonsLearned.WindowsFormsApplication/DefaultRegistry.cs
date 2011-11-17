@@ -41,8 +41,8 @@ namespace LessonsLearned.WindowsFormsApplication
 
             For<SearchPersonActivity>().Use<SearchPersonActivity>();
             For<PersonSearchService>().Singleton().Use<PersonSearchService>();
-            For<Repository<Person>>().Singleton().Use<EntityFrameworkPocoRepository<Person>>().Ctor<DbContext>().Is(c => c.GetInstance<PersonAggregate>());
-            For<PersonAggregate>().Singleton().Use<PersonAggregate>();
+            For<Repository<Person>>().Singleton().Use<EntityFrameworkPocoRepository<Person>>().Ctor<DbContext>().Is(c => c.GetInstance<LessonsLearnedDbContext>());
+            For<LessonsLearnedDbContext>().Singleton().Use<LessonsLearnedDbContext>();
 
             For<SearchPersonDetailsActivity>().Use<SearchPersonDetailsActivity>();
             For<ICommand<SearchPersonCommand>>().Singleton().Use<PersonVerificationWorkflow>();

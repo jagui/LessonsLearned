@@ -9,7 +9,6 @@ namespace LessonsLearned.DomainModel.Entities
         public DateTime DateOfBirth { get; set; }
         public String Forename { get; set; }
         public String Surename { get; set; }
-        public Bitmap Photo { get; set; }
         public String Comments { get; set; }
     }
 }

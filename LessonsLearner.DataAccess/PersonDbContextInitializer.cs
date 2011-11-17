@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace LessonsLearner.DataAccess
 {
-    public class PersonDbContextInitializer : DropCreateDatabaseIfModelChanges<PersonDbContext>
+    public class PersonDbContextInitializer : DropCreateDatabaseIfModelChanges<LessonsLearnedDbContext>
     {
 
     }

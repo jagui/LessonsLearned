@@ -10,9 +10,11 @@ namespace LessonsLearned.WindowsFormsApplication
             if (control.InvokeRequired)
             {
                 control.Invoke(action);
-                return;
             }
-            action();
+            else
+            {
+                action();
+            }
         }
     }
 }

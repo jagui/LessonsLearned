@@ -95,7 +95,6 @@
     <Compile Include="VerificationWorkflow\ICandidatesView.cs" />
     <Compile Include="VerificationWorkflow\ISearchFormView.cs" />
     <Compile Include="VerificationWorkflow\IVerificationWorkflowView.cs" />
-    <Compile Include="VerificationWorkflow\PersonVerifiedEvent.cs" />
     <Compile Include="VerificationWorkflow\SearchFormPresenter.cs" />
     <Compile Include="VerificationWorkflow\SearchFormView.cs">
       <SubType>UserControl</SubType>

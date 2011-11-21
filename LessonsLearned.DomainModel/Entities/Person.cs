@@ -10,5 +10,6 @@ namespace LessonsLearned.DomainModel.Entities
         public String Forename { get; set; }
         public String Surname { get; set; }
         public String Comments { get; set; }
+        public Boolean Accepted { get; set; }
     }
 }

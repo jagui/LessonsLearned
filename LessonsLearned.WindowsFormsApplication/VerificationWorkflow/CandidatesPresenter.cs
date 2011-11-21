@@ -6,6 +6,7 @@ using LessonsLearned.DomainModel.Common;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Events;
 using LessonsLearned.Application.Controller;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Commands;
+using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
@@ -27,9 +28,20 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _view.ShowCandidates(eventData.CandidatesDto);
         }
 
-        internal void Verify(DomainModel.Workflows.PersonVerification.Dtos.PersonSummaryDto personSummaryDto)
+        public void EvaluateCandProcess()
         {
-            _applicationController.Execute(new VerifyPersonCommand(personSummaryDto, "hola"));
+            _view.SetCanProcess(_view.SelectedCandidate() != null && !String.IsNullOrEmpty(_view.Comment));
+        }
+
+        internal void Verify()
+        {
+
+            _applicationController.Execute(new AcceptPersonCommand(_view.SelectedCandidate(), _view.Comment));
+        }
+
+        internal void Reject()
+        {
+            _applicationController.Execute(new RejectPersonCommand(_view.SelectedCandidate(), _view.Comment));
         }
     }
 }

@@ -43,6 +43,7 @@ namespace LessonsLearned.WindowsFormsApplication
             For<StartWorkflowCommand>().Use<StartVerificationWorkflowCommand>();
             For<IVerificationWorkflowView>().Use<VerificationWorkflowForm>();
             For<ICommand<StartWorkflowCommand>>().Use<VerificationWorkflowPresenter>();
+            For<IEventHandler<PersonVerifiedEvent>>().Use<VerificationWorkflowPresenter>();
             For<ICommand<StartVerificationWorkflowCommand>>().Use<VerificationWorkflowPresenter>();
             For<ISearchFormView>().Use<SearchFormView>();
             For<ICommand<StartSearchCommand>>().Use<SearchFormPresenter>();
@@ -57,7 +58,8 @@ namespace LessonsLearned.WindowsFormsApplication
             For<SearchPersonDetailsActivity>().Use<SearchPersonDetailsActivity>();
             For<ICommand<SearchPersonCommand>>().Singleton().Use<PersonVerificationWorkflow>();
             For<IEventHandler<PersonSelectedEvent>>().Singleton().Use<PersonVerificationWorkflow>();
-            For<ICommand<VerifyPersonCommand>>().Singleton().Use<PersonVerificationWorkflow>();
+            For<ICommand<AcceptPersonCommand>>().Singleton().Use<PersonVerificationWorkflow>();
+            For<ICommand<RejectPersonCommand>>().Singleton().Use<PersonVerificationWorkflow>();
 
             //
             //Enrolment Workflow

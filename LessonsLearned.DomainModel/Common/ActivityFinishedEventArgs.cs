@@ -2,7 +2,7 @@
 
 namespace LessonsLearned.DomainModel.Common
 {
-    public class ActivityFinishedEventArgs<TOutput> : EventArgs
+    public class    ActivityFinishedEventArgs<TOutput> : EventArgs
     {
         private readonly TOutput _output;
 

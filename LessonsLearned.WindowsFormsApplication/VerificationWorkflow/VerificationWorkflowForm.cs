@@ -29,16 +29,19 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         public void SetLastVerificationState(bool? verificationState)
         {
-            Controls.Clear();
-            Controls.Add(StartButton);
-            if (verificationState.HasValue)
-            {
-                BackColor = verificationState.Value ? Color.Green : Color.Red;
-            }
-            else
-            {
-                BackColor = _defaultBackColor;
-            }
+            this.RunInUiThread(() =>
+                                   {
+                                       Controls.Clear();
+                                       Controls.Add(StartButton);
+                                       if (verificationState.HasValue)
+                                       {
+                                           BackColor = verificationState.Value ? Color.Green : Color.Red;
+                                       }
+                                       else
+                                       {
+                                           BackColor = _defaultBackColor;
+                                       }
+                                   });
         }
 
         private void StartButton_Click(object sender, EventArgs e)

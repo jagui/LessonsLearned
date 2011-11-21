@@ -20,9 +20,9 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _view.Presenter = this;
         }
 
-        public void Search()
+        public void Search(ISearchFormView formView)
         {
-            _applicationController.Execute(CreateSearchPersonCommand(_view));
+            _applicationController.Execute(CreateSearchPersonCommand(formView));
         }
 
         public void Execute(StartSearchCommand commandData)

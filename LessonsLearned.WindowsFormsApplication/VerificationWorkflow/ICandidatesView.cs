@@ -10,5 +10,8 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
     public interface ICandidatesView : IView<CandidatesPresenter>
     {
         void ShowCandidates(IEnumerable<PersonSummaryDto> candidates);
+        void SetCanProcess(Boolean canProcess);
+        PersonSummaryDto SelectedCandidate();
+        String Comment { get; }
     }
 }

@@ -6,7 +6,7 @@ namespace LessonsLearned.DomainModel.Common
     {
         public abstract void Start(TInput input);
         public event EventHandler<ActivityFinishedEventArgs<TOutput>> Finished;
-        
+
         protected void RaiseFinished(TOutput output)
         {
             var tmp = Finished;

@@ -1,4 +1,5 @@
-﻿using LessonsLearned.DomainModel.Common;
+﻿using System;
+using LessonsLearned.DomainModel.Common;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Activities;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Commands;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
@@ -9,20 +10,23 @@ namespace LessonsLearned.DomainModel.Workflows.PersonVerification
     public class PersonVerificationWorkflow :
         ICommand<SearchPersonCommand>,
         IEventHandler<PersonSelectedEvent>,
-        ICommand<VerifyPersonCommand>
+        ICommand<AcceptPersonCommand>,
+        ICommand<RejectPersonCommand>
     {
         private readonly IEventPublisher _eventPublisher;
         private readonly SearchPersonActivity _personSearchActivity;
         private readonly SearchPersonDetailsActivity _searchPersonDetailsActivity;
+        private readonly VerifyPersonActivity _verifyPersonActivity;
 
 
         public PersonVerificationWorkflow(IEventPublisher eventPublisher,
             SearchPersonActivity personSearchActivity,
-            SearchPersonDetailsActivity searchPersonDetailsActivity)
+            SearchPersonDetailsActivity searchPersonDetailsActivity, VerifyPersonActivity verifyPersonActivity)
         {
             _eventPublisher = eventPublisher;
             _personSearchActivity = personSearchActivity;
             _searchPersonDetailsActivity = searchPersonDetailsActivity;
+            _verifyPersonActivity = verifyPersonActivity;
         }
 
 
@@ -49,9 +53,28 @@ namespace LessonsLearned.DomainModel.Workflows.PersonVerification
             _eventPublisher.Publish(new PersonDetailsFoundEvent(e.Output));
         }
 
-        public void Execute(VerifyPersonCommand commandData)
-        {
 
+
+        public void Execute(AcceptPersonCommand commandData)
+        {
+            Execute((AcceptOrRejectPersonCommand) commandData);
+        }
+
+        public void Execute(RejectPersonCommand commandData)
+        {
+            Execute((AcceptOrRejectPersonCommand)commandData);
+        }
+
+        private void Execute(AcceptOrRejectPersonCommand commandData)
+        {
+            _verifyPersonActivity.Finished += VerifyPersonActivity_Finished;
+            _verifyPersonActivity.Start(commandData);
+        }
+
+        private void VerifyPersonActivity_Finished(object sender, ActivityFinishedEventArgs<bool> e)
+        {
+            _verifyPersonActivity.Finished -= VerifyPersonActivity_Finished;
+            _eventPublisher.Publish(new PersonVerifiedEvent(e.Output));
         }
     }
 }

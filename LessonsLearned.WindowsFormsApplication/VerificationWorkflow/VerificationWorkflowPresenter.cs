@@ -5,6 +5,7 @@ using System.Text;
 using LessonsLearned.Application.Controller;
 using LessonsLearned.DomainModel.Common;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Commands;
+using LessonsLearned.DomainModel.Workflows.PersonVerification.Events;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
@@ -28,7 +29,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         public void Handle(PersonVerifiedEvent eventData)
         {
-            _view.SetLastVerificationState(eventData.Valid);
+            _view.SetLastVerificationState(eventData.Accepted);
         }
 
         public void ShowInHost(IView view)
@@ -38,7 +39,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         public void Execute(StartVerificationWorkflowCommand commandData)
         {
-            _view.SetLastVerificationState(null);
+            Start();
             _view.Run();
         }
 

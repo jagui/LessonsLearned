@@ -29,7 +29,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         private void SearchButtonClick(object sender, EventArgs e)
         {
-            Presenter.Search();
+            Presenter.Search(this);
         }
 
         public string FirstName

@@ -2,16 +2,16 @@
 
 namespace LessonsLearned.DomainModel.Workflows.PersonVerification.Events
 {
-    public class CandidatePeopleFoundEvent
+    public class CandidatesFoundEvent
     {
         private readonly CandidatesDto _candidatesDto;
 
-        public CandidatePeopleFoundEvent(CandidatesDto candidatesDto)
+        public CandidatesFoundEvent(CandidatesDto candidatesDto)
         {
             _candidatesDto = candidatesDto;
         }
 
-        public CandidatesDto CandidatesDto1
+        public CandidatesDto CandidatesDto
         {
             get { return _candidatesDto; }
         }

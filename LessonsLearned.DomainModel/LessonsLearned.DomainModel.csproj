@@ -56,7 +56,7 @@
     <Compile Include="Workflows\PersonVerification\Activities\SearchPersonDetailsActivity.cs" />
     <Compile Include="Workflows\PersonEnrolment\Commands\EnrolPersonCommand.cs" />
     <Compile Include="Workflows\PersonVerification\Dtos\EnrolPersonFormDto.cs" />
-    <Compile Include="Workflows\PersonVerification\Events\CandidatePeopleFoundEvent.cs" />
+    <Compile Include="Workflows\PersonVerification\Events\CandidatesFoundEvent.cs" />
     <Compile Include="Common\Activity.cs" />
     <Compile Include="Common\ActivityFinishedEventArgs.cs" />
     <Compile Include="Common\ICommand.cs" />

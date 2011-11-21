@@ -6,7 +6,7 @@ using LessonsLearned.Application.Controller;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
-    public interface IVerificationWorkflowView : IModalView<VerificationWorkflowPresenter>, IHost
+    public interface IVerificationWorkflowView : IView<VerificationWorkflowPresenter>, IHost
     {
         void SetLastVerificationState(Boolean? verificationState);
     }

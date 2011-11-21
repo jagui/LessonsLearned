@@ -1,7 +1,7 @@
 ﻿using LessonsLearned.DomainModel;
 using LessonsLearned.DomainModel.Common;
 using Microsoft.Practices.ServiceLocation;
-using IEventPublisher = LessonsLearned.Application.EventAggregator.IEventPublisher;
+
 
 namespace LessonsLearned.Application.Controller
 {

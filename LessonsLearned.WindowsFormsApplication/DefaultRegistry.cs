@@ -4,13 +4,11 @@ using LessonsLearned.DomainModel.Common;
 using LessonsLearned.DomainModel.Entities;
 using LessonsLearned.WindowsFormsApplication.EnrolmentWorkflow;
 using LessonsLearner.DataAccess;
-using SimpleOrgChart;
 using StructureMap.Configuration.DSL;
 using System.Windows.Forms;
 using LessonsLearned.Application.Controller;
 using LessonsLearned.WindowsFormsApplication.VerificationWorkflow;
 using LessonsLearned.Application.EventAggregator;
-using IEventPublisher = LessonsLearned.Application.EventAggregator.IEventPublisher;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Commands;
 using LessonsLearned.DomainModel.Workflows.PersonVerification;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Events;
@@ -33,23 +31,25 @@ namespace LessonsLearned.WindowsFormsApplication
             For<IApplicationController>().Singleton().Use<ApplicationController>();
             For<IEventPublisher>().Singleton().Use<EventPublisher>();
             For<DomainModel.Common.IEventPublisher>().Singleton().Use<EventPublisher>();
-            RegisterInterceptor(new EventAggregatorInterceptor());
 
+            //Workflow Chooser
             For<WorkflowChooserPresenter>().Use<WorkflowChooserPresenter>();
 
+            //
+            //Verification Workflow
+            //
+
+            //Ui
             For<StartWorkflowCommand>().Use<StartVerificationWorkflowCommand>();
             For<IVerificationWorkflowView>().Use<VerificationWorkflowForm>();
             For<ICommand<StartWorkflowCommand>>().Use<VerificationWorkflowPresenter>();
             For<ICommand<StartVerificationWorkflowCommand>>().Use<VerificationWorkflowPresenter>();
-
-            For<StartWorkflowCommand>().Use<StartEnrolmentWorkflowCommand>();
-            For<IEnrolmentFormView>().Use<EnrolmentForm>();
-            For<ICommand<StartWorkflowCommand>>().Use<EnrolmentWorkflowPresenter>();
-            For<ICommand<StartEnrolmentWorkflowCommand>>().Use<EnrolmentWorkflowPresenter>();
-
             For<ISearchFormView>().Use<SearchFormView>();
             For<ICommand<StartSearchCommand>>().Use<SearchFormPresenter>();
-
+            For<CandidatesPresenter>().Use<CandidatesPresenter>();
+            For<IEventHandler<CandidatesFoundEvent>>().Use<CandidatesPresenter>();
+            For<ICandidatesView>().Use<CandidatesView>();
+            //Domain
             For<SearchPersonActivity>().Use<SearchPersonActivity>();
             For<PersonSearchService>().Singleton().Use<PersonSearchService>();
             For<Repository<Person>>().Singleton().Use<EntityFrameworkPocoRepository<Person>>().Ctor<DbContext>().Is(c => c.GetInstance<LessonsLearnedDbContext>());
@@ -59,41 +59,17 @@ namespace LessonsLearned.WindowsFormsApplication
             For<IEventHandler<PersonSelectedEvent>>().Singleton().Use<PersonVerificationWorkflow>();
             For<ICommand<VerifyPersonCommand>>().Singleton().Use<PersonVerificationWorkflow>();
 
+            //
+            //Enrolment Workflow
+            //
+
+            //Ui
+            For<StartWorkflowCommand>().Use<StartEnrolmentWorkflowCommand>();
+            For<IEnrolmentFormView>().Use<EnrolmentForm>();
+            For<ICommand<StartWorkflowCommand>>().Use<EnrolmentWorkflowPresenter>();
+            For<ICommand<StartEnrolmentWorkflowCommand>>().Use<EnrolmentWorkflowPresenter>();
+            //Domain
             For<ICommand<EnrolPersonCommand>>().Singleton().Use<PersonEnrolmentWorkflow>();
-
-
-
-            //    .AsSingletons()
-            //    .TheDefault.Is.OfConcreteType<EventPublisher>();
-
-            //ForRequestedType<IOrgChartView>()
-            //    .TheDefaultIsConcreteType<MainForm>()
-            //    .OnCreation((i, v) => i.GetInstance<EmployeeDetailPresenter>());
-
-            //ForRequestedType<IEmployeeRepository>()
-            //    .TheDefaultIsConcreteType<InMemoryEmployeeRepository>();
-
-            //ForRequestedType<IEmployeeDetailView>()
-            //    .TheDefaultIsConcreteType<ViewEmployeeDetailControl>();
-
-            //ForRequestedType<ICommand<AddNewEmployeeData>>()
-            //    .TheDefaultIsConcreteType<AddNewEmployeeService>();
-
-            //ForRequestedType<IGetNewEmployeeInfo>()
-            //    .TheDefaultIsConcreteType<NewEmployeeInfoPresenter>();
-
-            //ForRequestedType<INewEmployeeInfoView>()
-            //    .TheDefaultIsConcreteType<NewEmployeeInfoForm>();
-
-            //ForRequestedType<IGetEmployeeManager>()
-            //    .TheDefaultIsConcreteType<SelectEmployeeManagerPresenter>();
-
-            //ForRequestedType<ISelectEmployeeManagerView>()
-            //    .TheDefaultIsConcreteType<SelectEmployeeManagerForm>();
-
-
         }
-
     }
-
 }

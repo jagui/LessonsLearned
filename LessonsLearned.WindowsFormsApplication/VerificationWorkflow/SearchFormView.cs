@@ -22,6 +22,11 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             set;
         }
 
+        public void Run()
+        {
+            throw new NotImplementedException();
+        }
+
         private void SearchButtonClick(object sender, EventArgs e)
         {
             Presenter.Search();
@@ -39,7 +44,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         public DateTime? DateOfBirth
         {
-            get { return DateOfBirthDatePicker.Value; }
+            get { return null; }
         }
     }
 }

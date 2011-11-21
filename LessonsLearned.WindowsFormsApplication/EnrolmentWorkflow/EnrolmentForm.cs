@@ -40,7 +40,7 @@ namespace LessonsLearned.WindowsFormsApplication.EnrolmentWorkflow
 
         public void Run()
         {
-            ShowDialog();
+            Show();
         }
 
         public EnrolmentWorkflowPresenter Presenter { get; set; }

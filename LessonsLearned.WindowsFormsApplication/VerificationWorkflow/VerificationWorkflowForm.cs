@@ -24,7 +24,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         public void Run()
         {
-            ShowDialog();
+            Show();
         }
 
         public void SetLastVerificationState(bool? verificationState)
@@ -49,8 +49,14 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         public void ShowInHost(IView view)
         {
-            Controls.Clear();
-            Controls.Add((Control)view);
+            this.RunInUiThread(() =>
+                              {
+                                  SuspendLayout();
+                                  Controls.Clear();
+                                  Controls.Add((Control)view);
+                                  ResumeLayout();
+                              });
+
         }
     }
 }

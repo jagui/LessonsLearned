@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LessonsLearned.WindowsFormsApplication.EnrolmentWorkflow
 {
-    public interface IEnrolmentFormView : IModalView<EnrolmentWorkflowPresenter>
+    public interface IEnrolmentFormView : IView<EnrolmentWorkflowPresenter>
     {
         String FirstName { get; }
         String LastName { get; }

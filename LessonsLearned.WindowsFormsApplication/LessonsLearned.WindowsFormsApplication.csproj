@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="AppContext.cs" />
     <Compile Include="BootStrapper.cs" />
+    <Compile Include="ControlExtensions.cs" />
     <Compile Include="DefaultRegistry.cs" />
     <Compile Include="EnrolmentWorkflow\EnrolmentForm.cs">
       <SubType>Form</SubType>
@@ -79,13 +80,19 @@
     <Compile Include="EnrolmentWorkflow\EnrolmentWorkflowPresenter.cs" />
     <Compile Include="EnrolmentWorkflow\IEnrolmentFormView.cs" />
     <Compile Include="EnrolmentWorkflow\StartEnrolmentWorkflowCommand.cs" />
-    <Compile Include="EventAggregatorInterceptor.cs" />
-    <Compile Include="IModalView.cs" />
     <Compile Include="IStartWorkflowCommand.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="IWorkflowChooserView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerificationWorkflow\CandidatesPresenter.cs" />
+    <Compile Include="VerificationWorkflow\CandidatesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VerificationWorkflow\CandidatesView.Designer.cs">
+      <DependentUpon>CandidatesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerificationWorkflow\ICandidatesView.cs" />
     <Compile Include="VerificationWorkflow\ISearchFormView.cs" />
     <Compile Include="VerificationWorkflow\IVerificationWorkflowView.cs" />
     <Compile Include="VerificationWorkflow\PersonVerifiedEvent.cs" />
@@ -125,6 +132,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VerificationWorkflow\CandidatesView.resx">
+      <DependentUpon>CandidatesView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VerificationWorkflow\SearchFormView.resx">
       <DependentUpon>SearchFormView.cs</DependentUpon>
     </EmbeddedResource>

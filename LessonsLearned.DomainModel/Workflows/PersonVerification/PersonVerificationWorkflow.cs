@@ -34,7 +34,7 @@ namespace LessonsLearned.DomainModel.Workflows.PersonVerification
         private void PersonSearchActivityFinished(object sender, ActivityFinishedEventArgs<CandidatesDto> e)
         {
             _personSearchActivity.Finished -= PersonSearchActivityFinished;
-            _eventPublisher.Publish(new CandidatePeopleFoundEvent(e.Output));
+            _eventPublisher.Publish(new CandidatesFoundEvent(e.Output));
         }
 
         public void Handle(PersonSelectedEvent eventData)

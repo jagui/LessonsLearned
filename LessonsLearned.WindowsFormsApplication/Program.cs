@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Windows.Forms;
-using LessonsLearned.WindowsFormsApplication;
 using StructureMap;
 
-namespace SimpleOrgChart
+namespace LessonsLearned.WindowsFormsApplication
 {
-	static class Program
-	{
+    static class Program
+    {
 
-		[STAThread]
-		static void Main()
-		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
+        [STAThread]
+        static void Main()
+        {
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-			var ioc = new Container();
-			var bootStrapper = new BootStrapper(ioc);
-			var appcontext = bootStrapper.GetAppContext();
+            var ioc = new Container();
+            var bootStrapper = new BootStrapper(ioc);
+            var appcontext = bootStrapper.GetAppContext();
 
-			Application.Run(appcontext);
-		}
+            System.Windows.Forms.Application.Run(appcontext);
+        }
 
-	}
+    }
 }

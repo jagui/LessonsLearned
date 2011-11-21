@@ -6,7 +6,7 @@ using LessonsLearned.DomainModel.Common;
 
 namespace LessonsLearned.WindowsFormsApplication
 {
-    public interface IWorkflowChooserView : IModalView<WorkflowChooserPresenter>
+    public interface IWorkflowChooserView : IView<WorkflowChooserPresenter>
     {
         void LoadWorkflows(IEnumerable<StartWorkflowCommand> workflowCommands);
     }

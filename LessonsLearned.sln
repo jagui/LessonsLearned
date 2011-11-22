@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonsLearned.Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonsLearner.DataAccess", "F:\git_local\LessonsLearned\LessonsLearner.DataAccess\LessonsLearner.DataAccess.csproj", "{38590156-CF11-4E15-BAA2-2090271FFAD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonsLearned.Application.UnitTests", "LessonsLearned.Application.UnitTests\LessonsLearned.Application.UnitTests.csproj", "{A644CCB6-042A-4D33-B107-182867779D75}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = LessonsLearned.vsmdi
@@ -105,6 +107,16 @@ Global
 		{38590156-CF11-4E15-BAA2-2090271FFAD6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{38590156-CF11-4E15-BAA2-2090271FFAD6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{38590156-CF11-4E15-BAA2-2090271FFAD6}.Release|x86.ActiveCfg = Release|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A644CCB6-042A-4D33-B107-182867779D75}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

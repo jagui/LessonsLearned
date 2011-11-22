@@ -10,6 +10,7 @@ namespace LessonsLearned.Application.EventAggregator
     {
         private readonly EventHandlerProxiesRegistry _eventHandlerProxiesRegistry = new EventHandlerProxiesRegistry();
         private readonly IServiceLocator _serviceLocator;
+
         public EventPublisher(IServiceLocator serviceLocator)
         {
             _serviceLocator = serviceLocator;
@@ -17,13 +18,12 @@ namespace LessonsLearned.Application.EventAggregator
 
         public void Publish<T>(T eventData)
         {
-            var eventHandlers = _serviceLocator.GetAllInstances<IEventHandler<T>>().Concat(_eventHandlerProxiesRegistry.ForType<T>());
+            var eventHandlers = _serviceLocator.GetAllInstances<IEventHandler<T>>().Concat(_eventHandlerProxiesRegistry.ForEvent<T>());
             foreach (var eventHandler in eventHandlers)
             {
                 eventHandler.Handle(eventData);
             }
         }
-
         public void Register<T>(Action<T> handler)
         {
             _eventHandlerProxiesRegistry.Register(handler);

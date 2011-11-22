@@ -14,6 +14,18 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
         public SearchFormView()
         {
             InitializeComponent();
+            FirstNameTextBox.Validating += new CancelEventHandler(FirstNameTextBox_Validating);
+            LastNameTextBox.Validating += new CancelEventHandler(LastNameTextBox_Validating);
+        }
+
+        void LastNameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void FirstNameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public SearchFormPresenter Presenter

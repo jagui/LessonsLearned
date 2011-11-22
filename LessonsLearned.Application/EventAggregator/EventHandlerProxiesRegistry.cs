@@ -9,10 +9,10 @@ namespace LessonsLearned.Application.EventAggregator
     {
         private readonly Dictionary<Type, List<IEventHandlerProxy>> _proxies = new Dictionary<Type, List<IEventHandlerProxy>>();
 
-        public void Register<T>(Action<T> handler)
+        public void Register<TEvent>(Action<TEvent> handler)
         {
-            var proxy = (IEventHandlerProxy)new EventHandlerProxy<T>(handler);
-            var eventType = typeof(T);
+            var proxy = (IEventHandlerProxy)new EventHandlerProxy<TEvent>(handler);
+            var eventType = typeof(TEvent);
             if (!_proxies.ContainsKey(eventType))
             {
                 _proxies.Add(eventType, new List<IEventHandlerProxy>());
@@ -25,14 +25,14 @@ namespace LessonsLearned.Application.EventAggregator
             get { return _proxies[index]; }
         }
 
-        public IEnumerable<IEventHandler<T>> ForType<T>()
+        public IEnumerable<IEventHandler<TEvent>> ForEvent<TEvent>()
         {
-            var eventType = typeof(T);
+            var eventType = typeof(TEvent);
 
             if (!_proxies.ContainsKey(eventType))
-                return Enumerable.Empty<IEventHandler<T>>();
+                return Enumerable.Empty<IEventHandler<TEvent>>();
 
-            return this[eventType].OfType<IEventHandler<T>>();
+            return this[eventType].OfType<IEventHandler<TEvent>>();
         }
     }
 }

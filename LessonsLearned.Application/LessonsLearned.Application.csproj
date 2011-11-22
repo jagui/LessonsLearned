@@ -50,7 +50,10 @@
     <Compile Include="EventAggregator\EventHandlerOptions.cs" />
     <Compile Include="EventAggregator\EventHandlers.cs" />
     <Compile Include="EventAggregator\EventPublisher.cs" />
+    <Compile Include="EventAggregator\EventHandlerProxiesRegistry.cs" />
+    <Compile Include="EventAggregator\IEventHandlerProxy.cs" />
     <Compile Include="EventAggregator\LatchManager.cs" />
+    <Compile Include="EventAggregator\EventHandlerProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

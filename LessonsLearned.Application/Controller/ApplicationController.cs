@@ -1,4 +1,5 @@
-﻿using LessonsLearned.DomainModel;
+﻿using System;
+using LessonsLearned.DomainModel;
 using LessonsLearned.DomainModel.Common;
 using Microsoft.Practices.ServiceLocation;
 
@@ -29,6 +30,11 @@ namespace LessonsLearned.Application.Controller
         public void Raise<T>(T eventData)
         {
             _eventPublisher.Publish(eventData);
+        }
+
+        public void Register<T>(Action<T> handler)
+        {
+            _eventPublisher.Register<T>(handler);
         }
 
         public void ShowInHost(IView view)

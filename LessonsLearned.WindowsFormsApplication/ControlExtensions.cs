@@ -7,14 +7,14 @@ namespace LessonsLearned.WindowsFormsApplication
     {
         public static void RunInUiThread(this Control control, Action action)
         {
-            if (control.InvokeRequired)
-            {
+            //if (control.InvokeRequired)
+            //{
                 control.Invoke(action);
-            }
-            else
-            {
-                action();
-            }
+            //}
+            //else
+            //{
+            //    action();
+            //}
         }
     }
 }

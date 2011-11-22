@@ -9,7 +9,7 @@ using LessonsLearned.DomainModel.Workflows.PersonVerification.Events;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
-    public class VerificationWorkflowPresenter : ICommand<StartWorkflowCommand>, ICommand<StartVerificationWorkflowCommand>, IEventHandler<PersonVerifiedEvent>, IHost
+    public class VerificationWorkflowPresenter : ICommand<StartWorkflowCommand>, ICommand<StartVerificationWorkflowCommand>, IHost
     {
         private readonly IApplicationController _applicationController;
         private readonly IVerificationWorkflowView _view;
@@ -20,6 +20,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _applicationController.SetHost(this);
             _view = view;
             _view.Presenter = this;
+            applicationController.Register<PersonVerifiedEvent>(Handle);
         }
 
         public void Start()
@@ -27,7 +28,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _applicationController.Execute(new StartSearchCommand());
         }
 
-        public void Handle(PersonVerifiedEvent eventData)
+        private void Handle(PersonVerifiedEvent eventData)
         {
             _view.SetLastVerificationState(eventData.Accepted);
         }
@@ -39,8 +40,8 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         public void Execute(StartVerificationWorkflowCommand commandData)
         {
-            Start();
             _view.Run();
+            Start();
         }
 
         public string Name

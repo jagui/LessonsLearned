@@ -31,6 +31,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
         {
             this.RunInUiThread(() =>
                                    {
+                                       SuspendLayout();
                                        Controls.Clear();
                                        Controls.Add(StartButton);
                                        if (verificationState.HasValue)
@@ -41,6 +42,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
                                        {
                                            BackColor = _defaultBackColor;
                                        }
+                                       ResumeLayout();
                                    });
         }
 

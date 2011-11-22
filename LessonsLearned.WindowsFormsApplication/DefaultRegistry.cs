@@ -43,7 +43,6 @@ namespace LessonsLearned.WindowsFormsApplication
             For<StartWorkflowCommand>().Use<StartVerificationWorkflowCommand>();
             For<IVerificationWorkflowView>().Use<VerificationWorkflowForm>();
             For<ICommand<StartWorkflowCommand>>().Use<VerificationWorkflowPresenter>();
-            For<IEventHandler<PersonVerifiedEvent>>().Use<VerificationWorkflowPresenter>();
             For<ICommand<StartVerificationWorkflowCommand>>().Use<VerificationWorkflowPresenter>();
             For<ISearchFormView>().Use<SearchFormView>();
             For<ICommand<StartSearchCommand>>().Use<SearchFormPresenter>();

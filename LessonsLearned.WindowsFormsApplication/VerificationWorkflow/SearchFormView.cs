@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using LessonsLearned.Application.WinForms;
 using LessonsLearned.PresentationModel;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
@@ -15,21 +16,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
         public SearchFormView()
         {
             InitializeComponent();
-
-
-            //FirstNameTextBox.Validating += FirstNameTextBox_Validating;
-            //LastNameTextBox.Validating += LastNameTextBox_Validating;
         }
-
-        //void LastNameTextBox_Validating(object sender, CancelEventArgs e)
-        //{
-        //    errorProvider1 = 
-        //}
-
-        //void FirstNameTextBox_Validating(object sender, CancelEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public SearchFormPresenter Presenter
         {
@@ -66,19 +53,21 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
         {
             SetFirstNameBinding(searchForm);
             SetLastNameBinding(searchForm);
-            errorProvider1.DataSource = searchForm;
         }
 
         private void SetFirstNameBinding(SearchForm searchForm)
         {
-            FirstNameTextBox.DataBindings.Clear();
-            FirstNameTextBox.DataBindings.Add(new Binding("Text", searchForm, "Forename"));
+            ModelBinder.Bind(() => FirstNameTextBox.Text, () => searchForm.Forename);
+
+            //FirstNameTextBox.DataBindings.Clear();
+            //FirstNameTextBox.DataBindings.Add(new Binding("Text", searchForm, "Forename"));
         }
 
         private void SetLastNameBinding(SearchForm searchForm)
         {
-            LastNameTextBox.DataBindings.Clear();
-            LastNameTextBox.DataBindings.Add(new Binding("Text", searchForm, "Surname"));
+            ModelBinder.Bind(() => LastNameTextBox.Text, () => searchForm.Surname);
+            //LastNameTextBox.DataBindings.Clear();
+            //LastNameTextBox.DataBindings.Add(new Binding("Text", searchForm, "Surname"));
         }
 
     }

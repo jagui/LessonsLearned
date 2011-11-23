@@ -156,6 +156,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LessonsLearned.Application.WinForms\LessonsLearned.Application.WinForms.csproj">
+      <Project>{DE62000E-3490-4466-916E-7949E1593AFD}</Project>
+      <Name>LessonsLearned.Application.WinForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LessonsLearned.Application\LessonsLearned.Application.csproj">
       <Project>{5BFF22EA-E67D-4C50-9FF9-7341D8CBED4F}</Project>
       <Name>LessonsLearned.Application</Name>

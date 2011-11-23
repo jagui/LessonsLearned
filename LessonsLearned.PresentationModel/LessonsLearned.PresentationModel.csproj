@@ -57,10 +57,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Juanagui.Validation">
-      <HintPath>..\packages\Juanagui.Validation.1.0.1\lib\net40\Juanagui.Validation.dll</HintPath>
+    <Reference Include="Juanagui.Validation, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Juanagui.Validation.1.0.2\lib\net40\Juanagui.Validation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />

@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using Juanagui.Validation;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
 using System.ComponentModel;
+using Validator = Juanagui.Validation.Validator;
 
 namespace LessonsLearned.PresentationModel
 {
     public class SearchForm : PresentationModelBase, IDataErrorInfo
     {
         private readonly PersonSearchFormDto _personSearchFormDto;
+        private string _forename;
+        private string _surname;
 
         public SearchForm()
             : this(new PersonSearchFormDto())
@@ -21,13 +25,7 @@ namespace LessonsLearned.PresentationModel
             _personSearchFormDto = personSearchFormDto;
         }
 
-        private string _forename;
-
-        public PersonSearchFormDto ToDto()
-        {
-            return _personSearchFormDto;
-        }
-
+        [Required]
         public String Forename
         {
             get { return _forename; }
@@ -38,7 +36,7 @@ namespace LessonsLearned.PresentationModel
             }
         }
 
-        private string _surname;
+        [Required]
         public String Surname
         {
             get { return _surname; }
@@ -49,6 +47,10 @@ namespace LessonsLearned.PresentationModel
             }
         }
 
+        public PersonSearchFormDto ToDto()
+        {
+            return _personSearchFormDto;
+        }
 
         public string this[string columnName]
         {

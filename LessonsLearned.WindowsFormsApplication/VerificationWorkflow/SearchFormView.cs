@@ -13,9 +13,12 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
     public partial class SearchFormView : UserControl, ISearchFormView
     {
+        private readonly ModelBinder _modelBinder;
+
         public SearchFormView()
         {
             InitializeComponent();
+            _modelBinder = new ModelBinder(errorProvider1);
         }
 
         public SearchFormPresenter Presenter
@@ -34,21 +37,6 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             Presenter.Search(this);
         }
 
-        public string FirstName
-        {
-            get { return FirstNameTextBox.Text; }
-        }
-
-        public string LastName
-        {
-            get { return LastNameTextBox.Text; }
-        }
-
-        public DateTime? DateOfBirth
-        {
-            get { return null; }
-        }
-
         public void SetSearchForm(SearchForm searchForm)
         {
             SetFirstNameBinding(searchForm);
@@ -57,18 +45,12 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         private void SetFirstNameBinding(SearchForm searchForm)
         {
-            ModelBinder.Bind(() => FirstNameTextBox.Text, () => searchForm.Forename);
-
-            //FirstNameTextBox.DataBindings.Clear();
-            //FirstNameTextBox.DataBindings.Add(new Binding("Text", searchForm, "Forename"));
+            _modelBinder.Bind(() => FirstNameTextBox.Text, () => searchForm.Forename);
         }
 
         private void SetLastNameBinding(SearchForm searchForm)
         {
-            ModelBinder.Bind(() => LastNameTextBox.Text, () => searchForm.Surname);
-            //LastNameTextBox.DataBindings.Clear();
-            //LastNameTextBox.DataBindings.Add(new Binding("Text", searchForm, "Surname"));
+            _modelBinder.Bind(() => LastNameTextBox.Text, () => searchForm.Surname);
         }
-
     }
 }

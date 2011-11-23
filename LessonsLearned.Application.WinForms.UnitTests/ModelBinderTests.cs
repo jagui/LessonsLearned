@@ -5,15 +5,19 @@ using System.Linq;
 using System.Windows.Forms;
 using LessonsLearned.PresentationModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.ComponentModel.DataAnnotations;
 
 namespace LessonsLearned.Application.WinForms.UnitTests
 {
     [TestClass]
     public class ModelBinderTests
     {
+
         private class BindingSource : PresentationModelBase
         {
             private string _sourceProperty;
+
+            [Required]
             public String SourceProperty
             {
                 get { return _sourceProperty; }
@@ -26,17 +30,49 @@ namespace LessonsLearned.Application.WinForms.UnitTests
         }
 
         [TestMethod]
-        public void ModelBinder_Bind_IsBound()
+        public void ModelBinder_Bind_SourceToTarget()
         {
-            var form = new Form();
             var target = new TextBox();
-            form.Controls.Add(target);
-            form.Show();
-            var source = new BindingSource();
-            ModelBinder.Bind(() => target.Text, () => source.SourceProperty);
-            const string changed = "changed";
-            source.SourceProperty = changed;
-            Assert.AreEqual(changed, target.Text);
+            using (new BindingTestContext(target))
+            {
+                var source = new BindingSource();
+                new ModelBinder().Bind(() => target.Text, () => source.SourceProperty);
+                const string changed = "changed";
+                source.SourceProperty = changed;
+                Assert.AreEqual(changed, target.Text);
+            }
+        }
+
+
+        [TestMethod]
+        public void ModelBinder_Bind_TargetToSource()
+        {
+            var target = new TextBox();
+            using (new BindingTestContext(target))
+            {
+                var source = new BindingSource();
+                new ModelBinder().Bind(() => target.Text, () => source.SourceProperty);
+                const string changed = "changed";
+                target.Text = changed;
+                Assert.AreEqual(changed, source.SourceProperty);
+            }
+        }
+
+
+
+        [TestMethod]
+        public void ModelBinder_Bind_TargetToSource_Validation()
+        {
+            var target = new TextBox();
+            using (new BindingTestContext(target))
+            {
+                var errors = new ErrorProvider();
+                var source = new BindingSource { SourceProperty = "original" };
+                new ModelBinder(errors).Bind(() => target.Text, () => source.SourceProperty);
+                target.Text = String.Empty;
+                Assert.AreEqual(String.Empty, source.SourceProperty);
+                Assert.AreEqual("The SourceProperty field is required.", errors.GetError(target));
+            }
         }
     }
 }

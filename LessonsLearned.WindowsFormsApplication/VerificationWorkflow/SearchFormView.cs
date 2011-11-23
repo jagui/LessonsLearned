@@ -15,6 +15,8 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
         public SearchFormView()
         {
             InitializeComponent();
+
+
             //FirstNameTextBox.Validating += FirstNameTextBox_Validating;
             //LastNameTextBox.Validating += LastNameTextBox_Validating;
         }
@@ -64,6 +66,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
         {
             SetFirstNameBinding(searchForm);
             SetLastNameBinding(searchForm);
+            errorProvider1.DataSource = searchForm;
         }
 
         private void SetFirstNameBinding(SearchForm searchForm)

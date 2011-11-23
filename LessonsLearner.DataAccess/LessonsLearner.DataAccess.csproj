@@ -53,7 +53,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\jagui.BIOMETRICS\Documents\Visual Studio 2010\Projects\LessonsLearned\LessonsLearned.DomainModel\LessonsLearned.DomainModel.csproj">
+    <ProjectReference Include="..\LessonsLearned.DomainModel\LessonsLearned.DomainModel.csproj">
       <Project>{61FC25B0-1246-4F5D-82D1-8F2A53A7282F}</Project>
       <Name>LessonsLearned.DomainModel</Name>
     </ProjectReference>

@@ -68,6 +68,13 @@
   <ItemGroup>
     <Compile Include="PresentationModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchForm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LessonsLearned.DomainModel\LessonsLearned.DomainModel.csproj">
+      <Project>{61FC25B0-1246-4F5D-82D1-8F2A53A7282F}</Project>
+      <Name>LessonsLearned.DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

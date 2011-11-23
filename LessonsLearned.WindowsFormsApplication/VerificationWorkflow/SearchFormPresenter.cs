@@ -6,6 +6,7 @@ using LessonsLearned.Application.Controller;
 using LessonsLearned.DomainModel.Common;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Commands;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
+using LessonsLearned.PresentationModel;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
@@ -13,10 +14,13 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
     {
         private readonly IApplicationController _applicationController;
         private readonly ISearchFormView _view;
+        private readonly SearchForm _searchForm;
         public SearchFormPresenter(IApplicationController applicationController, ISearchFormView view)
         {
             _applicationController = applicationController;
             _view = view;
+            _searchForm = new SearchForm();
+            _view.SetSearchForm(_searchForm);
             _view.Presenter = this;
         }
 
@@ -30,15 +34,9 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _applicationController.ShowInHost(_view);
         }
 
-        private static SearchPersonCommand CreateSearchPersonCommand(ISearchFormView view)
+        private SearchPersonCommand CreateSearchPersonCommand(ISearchFormView view)
         {
-            return new SearchPersonCommand(
-                           new PersonSearchFormDto
-                               {
-                                   Forename = view.FirstName,
-                                   Surname = view.LastName,
-                                   DateOfBirth = view.DateOfBirth
-                               });
+            return new SearchPersonCommand(_searchForm.ToDto());
         }
     }
 }

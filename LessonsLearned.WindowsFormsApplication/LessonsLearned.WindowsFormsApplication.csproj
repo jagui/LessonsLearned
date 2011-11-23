@@ -164,6 +164,10 @@
       <Project>{61FC25B0-1246-4F5D-82D1-8F2A53A7282F}</Project>
       <Name>LessonsLearned.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LessonsLearned.PresentationModel\LessonsLearned.PresentationModel.csproj">
+      <Project>{BA876EF8-9C91-458F-BC01-628852663C6D}</Project>
+      <Name>LessonsLearned.PresentationModel</Name>
+    </ProjectReference>
     <ProjectReference Include="F:\git_local\LessonsLearned\LessonsLearner.DataAccess\LessonsLearner.DataAccess.csproj">
       <Project>{38590156-CF11-4E15-BAA2-2090271FFAD6}</Project>
       <Name>LessonsLearner.DataAccess</Name>

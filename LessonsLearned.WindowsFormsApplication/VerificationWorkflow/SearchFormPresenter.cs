@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LessonsLearned.Application.Controller;
+﻿using LessonsLearned.Application.Controller;
 using LessonsLearned.DomainModel.Common;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Commands;
-using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
 using LessonsLearned.PresentationModel;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
@@ -20,13 +15,23 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _applicationController = applicationController;
             _view = view;
             _searchForm = new SearchForm();
+            _searchForm.PropertyChanged += SearchFormPropertyChanged;
             _view.SetSearchForm(_searchForm);
+            _view.DisableSearch();
             _view.Presenter = this;
         }
 
-        public void Search(ISearchFormView formView)
+        void SearchFormPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            _applicationController.Execute(CreateSearchPersonCommand(formView));
+            if (_searchForm.IsValid) 
+                _view.EnableSearch();
+            else 
+                _view.DisableSearch();
+        }
+
+        public void Search()
+        {
+            _applicationController.Execute(CreateSearchPersonCommand());
         }
 
         public void Execute(StartSearchCommand commandData)
@@ -34,7 +39,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _applicationController.ShowInHost(_view);
         }
 
-        private SearchPersonCommand CreateSearchPersonCommand(ISearchFormView view)
+        private SearchPersonCommand CreateSearchPersonCommand()
         {
             return new SearchPersonCommand(_searchForm.ToDto());
         }

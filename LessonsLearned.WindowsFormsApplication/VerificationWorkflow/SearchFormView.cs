@@ -34,21 +34,31 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         private void SearchButtonClick(object sender, EventArgs e)
         {
-            Presenter.Search(this);
+            Presenter.Search();
         }
 
         public void SetSearchForm(SearchForm searchForm)
         {
-            SetFirstNameBinding(searchForm);
-            SetLastNameBinding(searchForm);
+            BindFirstName(searchForm);
+            BinsLastName(searchForm);
         }
 
-        private void SetFirstNameBinding(SearchForm searchForm)
+        public void EnableSearch()
+        {
+            SearchButton.Enabled = true;
+        }
+
+        public void DisableSearch()
+        {
+            SearchButton.Enabled = false;
+        }
+
+        private void BindFirstName(SearchForm searchForm)
         {
             _modelBinder.Bind(() => FirstNameTextBox.Text, () => searchForm.Forename);
         }
 
-        private void SetLastNameBinding(SearchForm searchForm)
+        private void BinsLastName(SearchForm searchForm)
         {
             _modelBinder.Bind(() => LastNameTextBox.Text, () => searchForm.Surname);
         }

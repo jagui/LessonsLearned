@@ -9,5 +9,7 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
     public interface ISearchFormView : IView<SearchFormPresenter>
     {
         void SetSearchForm(SearchForm searchForm);
+        void EnableSearch();
+        void DisableSearch();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Windows.Forms;
 using Juanagui.Validation;
+using System.ComponentModel;
 
 namespace LessonsLearned.Application.WinForms
 {
@@ -25,34 +26,22 @@ namespace LessonsLearned.Application.WinForms
 
         public void Bind<TProperty>(Expression<Func<TProperty>> targetExpression, Expression<Func<TProperty>> sourceExpression)
         {
-            var targetAccessor = (MemberExpression)targetExpression.Body;
-            var targetObjExpression = targetAccessor.Expression;
-            var targetObj = (Control)Expression.Lambda(targetObjExpression, null).Compile().DynamicInvoke(null);
-            var targetPropertyName = targetAccessor.Member.Name;
+            CreateBinding(new BindingTargetDescriptor(targetExpression), new BindingSourceDescriptor(sourceExpression));
+        }
 
-            var sourceAccessor = (MemberExpression)sourceExpression.Body;
-            var sourceObjExpression = sourceAccessor.Expression;
-            var sourceObj = Expression.Lambda(sourceObjExpression, null).Compile().DynamicInvoke(null);
-            var sourcePropertyName = sourceAccessor.Member.Name;
-
-            var binding = new Binding(targetPropertyName, sourceObj, sourcePropertyName, true,
+        private void CreateBinding(BindingTargetDescriptor target, BindingSourceDescriptor source)
+        {
+            var binding = new Binding(target.PropertyName, source.Object, source.PropertyName, TrackingValidationErrors,
                                       DataSourceUpdateMode.OnPropertyChanged);
             if (TrackingValidationErrors)
             {
-                binding.BindingComplete += binding_BindingComplete;
-                binding.Format += binding_Format;
+                binding.BindingComplete += BindingComplete;
             }
             _bindings.Add(binding);
-            targetObj.DataBindings.Add(binding);
+            target.Object.DataBindings.Add(binding);
         }
 
-        void binding_Format(object sender, ConvertEventArgs e)
-        {
-
-
-        }
-
-        void binding_BindingComplete(object sender, BindingCompleteEventArgs e)
+        private void BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             var binding = (Binding)sender;
             var target = binding.DataSource;
@@ -62,6 +51,5 @@ namespace LessonsLearned.Application.WinForms
                 return;
             _errorProvider.SetError((Control)binding.BindableComponent, notification[binding.BindingMemberInfo.BindingField]);
         }
-
     }
 }

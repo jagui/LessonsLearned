@@ -6,6 +6,7 @@ using System.Text;
 using Juanagui.Validation;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
 using Validator = Juanagui.Validation.Validator;
+using System.ComponentModel;
 
 namespace LessonsLearned.PresentationModel
 {
@@ -53,36 +54,20 @@ namespace LessonsLearned.PresentationModel
 
         public string this[string columnName]
         {
-            get
-            {
-
-                return GetNotificationMessages()[columnName];
-            }
+            get { return this.GetErrorData(columnName); }
         }
 
         public string Error
         {
             get
             {
-                var error = new StringBuilder();
-                foreach (var message in GetNotificationMessages())
-                {
-                    error.Append(message);
-                }
-                return error.ToString();
+                return this.GetAllErrors(" ");
             }
         }
 
         public bool IsValid
         {
-            get { return !GetNotificationMessages().Any(); }
-        }
-
-        private Notification GetNotificationMessages()
-        {
-            var notification = new Notification();
-            Validator.Validate(this, notification);
-            return notification;
+            get { return this.IsValid(); }
         }
     }
 }

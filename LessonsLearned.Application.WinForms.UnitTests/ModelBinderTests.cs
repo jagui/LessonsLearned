@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Juanagui.Validation;
 using LessonsLearned.PresentationModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +15,7 @@ namespace LessonsLearned.Application.WinForms.UnitTests
     public class ModelBinderTests
     {
 
-        private class BindingSource : PresentationModelBase
+        private class BindingSource : PresentationModelBase, IDataErrorInfo
         {
             private string _sourceProperty;
 
@@ -26,6 +28,21 @@ namespace LessonsLearned.Application.WinForms.UnitTests
                     _sourceProperty = value;
                     RaisePropertyChanged(() => SourceProperty);
                 }
+            }
+
+            public string this[string columnName]
+            {
+                get
+                {
+                    var notification = new Juanagui.Validation.Notification();
+                    Juanagui.Validation.Validator.Validate(this, notification);
+                    return notification[columnName];
+                }
+            }
+
+            public string Error
+            {
+                get { throw new NotImplementedException(); }
             }
         }
 

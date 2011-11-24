@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Windows.Forms;
-using Juanagui.Validation;
 using System.ComponentModel;
 
 namespace LessonsLearned.Application.WinForms
@@ -44,12 +43,18 @@ namespace LessonsLearned.Application.WinForms
         private void BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             var binding = (Binding)sender;
-            var target = binding.DataSource;
-            var notification = new Notification();
-            Validator.Validate(target, notification);
-            if (notification.IsValid())
-                return;
-            _errorProvider.SetError((Control)binding.BindableComponent, notification[binding.BindingMemberInfo.BindingField]);
+            if (e.BindingCompleteState == BindingCompleteState.Success)
+            {
+                _errorProvider.SetError((Control)binding.BindableComponent, String.Empty);
+            }
+            if (e.BindingCompleteState == BindingCompleteState.DataError)
+            {
+                _errorProvider.SetError((Control)binding.BindableComponent, e.ErrorText);
+            }
+            if (e.BindingCompleteState == BindingCompleteState.Exception)
+            {
+                _errorProvider.SetError((Control)binding.BindableComponent, e.Exception.Message);
+            }
         }
     }
 }

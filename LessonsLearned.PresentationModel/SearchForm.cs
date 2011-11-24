@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using Juanagui.Validation;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
-using System.ComponentModel;
 using Validator = Juanagui.Validation.Validator;
 
 namespace LessonsLearned.PresentationModel
 {
-    public class SearchForm : PresentationModelBase, IDataErrorInfo
+    public class SearchForm : PresentationModelBase, IValid
     {
         private readonly PersonSearchFormDto _personSearchFormDto;
         private string _forename;
@@ -56,15 +55,34 @@ namespace LessonsLearned.PresentationModel
         {
             get
             {
-                var notification = new Notification();
-                Validator.Validate(this, notification);
-                return notification[columnName];
+
+                return GetNotificationMessages()[columnName];
             }
         }
 
         public string Error
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                var error = new StringBuilder();
+                foreach (var message in GetNotificationMessages())
+                {
+                    error.Append(message);
+                }
+                return error.ToString();
+            }
+        }
+
+        public bool IsValid
+        {
+            get { return !GetNotificationMessages().Any(); }
+        }
+
+        private Notification GetNotificationMessages()
+        {
+            var notification = new Notification();
+            Validator.Validate(this, notification);
+            return notification;
         }
     }
 }

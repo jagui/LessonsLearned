@@ -29,8 +29,7 @@ namespace LessonsLearned.WindowsFormsApplication
         {
             For<ApplicationContext>().Use<AppContext>();
             For<IApplicationController>().Singleton().Use<ApplicationController>();
-            For<IEventPublisher>().Singleton().Use<EventPublisher>();
-            For<DomainModel.Common.IEventPublisher>().Singleton().Use<EventPublisher>();
+            For<IEventPublisher>().Singleton().Use(c=>c.GetInstance<IApplicationController>());
 
             //Workflow Chooser
             For<WorkflowChooserPresenter>().Use<WorkflowChooserPresenter>();

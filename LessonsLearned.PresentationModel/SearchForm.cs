@@ -13,8 +13,6 @@ namespace LessonsLearned.PresentationModel
     public class SearchForm : PresentationModelBase, IValid
     {
         private readonly PersonSearchFormDto _personSearchFormDto;
-        private string _forename;
-        private string _surname;
 
         public SearchForm()
             : this(new PersonSearchFormDto())
@@ -28,10 +26,10 @@ namespace LessonsLearned.PresentationModel
         [Required]
         public String Forename
         {
-            get { return _forename; }
+            get { return _personSearchFormDto.Forename; }
             set
             {
-                _forename = value;
+                _personSearchFormDto.Forename = value;
                 RaisePropertyChanged(() => Forename);
             }
         }
@@ -39,12 +37,18 @@ namespace LessonsLearned.PresentationModel
         [Required]
         public String Surname
         {
-            get { return _surname; }
+            get { return _personSearchFormDto.Surname; }
             set
             {
-                _surname = value;
+                _personSearchFormDto.Surname = value;
                 RaisePropertyChanged(() => Surname);
             }
+        }
+
+        public void Reset()
+        {
+            Forename = null;
+            Surname = null;
         }
 
         public PersonSearchFormDto ToDto()

@@ -93,8 +93,10 @@
       <DependentUpon>CandidatesView.cs</DependentUpon>
     </Compile>
     <Compile Include="VerificationWorkflow\ICandidatesView.cs" />
+    <Compile Include="IContentView.cs" />
     <Compile Include="VerificationWorkflow\ISearchFormView.cs" />
     <Compile Include="VerificationWorkflow\IVerificationWorkflowView.cs" />
+    <Compile Include="LinearWorkflowConductor.cs" />
     <Compile Include="VerificationWorkflow\SearchFormPresenter.cs" />
     <Compile Include="VerificationWorkflow\SearchFormView.cs">
       <SubType>UserControl</SubType>
@@ -156,6 +158,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\mercurial_local\caliburnmicro\src\Caliburn.Micro.WinForms\Caliburn.Micro.WinForms.csproj">
+      <Project>{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}</Project>
+      <Name>Caliburn.Micro.WinForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LessonsLearned.Application.WinForms\LessonsLearned.Application.WinForms.csproj">
       <Project>{DE62000E-3490-4466-916E-7949E1593AFD}</Project>
       <Name>LessonsLearned.Application.WinForms</Name>

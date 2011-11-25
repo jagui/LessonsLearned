@@ -1,11 +1,12 @@
-﻿using LessonsLearned.Application.Controller;
+﻿using Caliburn.Micro;
+using LessonsLearned.Application.Controller;
 using LessonsLearned.DomainModel.Common;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Commands;
 using LessonsLearned.PresentationModel;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
-    public class SearchFormPresenter : ICommand<StartSearchCommand>
+    public class SearchFormPresenter : Screen, ICommand<StartSearchCommand>
     {
         private readonly IApplicationController _applicationController;
         private readonly ISearchFormView _view;
@@ -19,13 +20,14 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _view.SetSearchForm(_searchForm);
             _view.DisableSearch();
             _view.Presenter = this;
+            AttachView(_view, null);
         }
 
         void SearchFormPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (_searchForm.IsValid) 
+            if (_searchForm.IsValid)
                 _view.EnableSearch();
-            else 
+            else
                 _view.DisableSearch();
         }
 
@@ -36,12 +38,18 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 
         public void Execute(StartSearchCommand commandData)
         {
-            _applicationController.ShowInHost(_view);
+            _applicationController.Activate(this);
         }
 
         private SearchPersonCommand CreateSearchPersonCommand()
         {
             return new SearchPersonCommand(_searchForm.ToDto());
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            _searchForm.Reset();
+            base.OnDeactivate(close);
         }
     }
 }

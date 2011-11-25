@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Caliburn.Micro;
 using LessonsLearned.DomainModel.Common;
 using LessonsLearned.DomainModel.Workflows.PersonVerification.Events;
 using LessonsLearned.Application.Controller;
@@ -10,7 +11,7 @@ using LessonsLearned.DomainModel.Workflows.PersonVerification.Dtos;
 
 namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
 {
-    public class CandidatesPresenter : IEventHandler<CandidatesFoundEvent>
+    public class CandidatesPresenter : Screen, IEventHandler<CandidatesFoundEvent>
     {
         private readonly ICandidatesView _view;
         private readonly IApplicationController _applicationController;
@@ -20,11 +21,12 @@ namespace LessonsLearned.WindowsFormsApplication.VerificationWorkflow
             _view = view;
             _view.Presenter = this;
             _applicationController = applicationController;
+            AttachView(_view,null);
         }
 
         public void Handle(CandidatesFoundEvent eventData)
         {
-            _applicationController.ShowInHost(_view);
+            _applicationController.Activate(this);
             _view.ShowCandidates(eventData.CandidatesDto);
         }
 

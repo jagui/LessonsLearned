@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonsLearned.Application.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonsLearned.Application.WinForms.UnitTests", "LessonsLearned.Application.WinForms.UnitTests\LessonsLearned.Application.WinForms.UnitTests.csproj", "{31436160-6697-4873-903F-9ABE9B765D1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caliburn.Micro.WinForms", "..\..\mercurial_local\caliburnmicro\src\Caliburn.Micro.WinForms\Caliburn.Micro.WinForms.csproj", "{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = LessonsLearned.vsmdi
@@ -141,6 +143,16 @@ Global
 		{31436160-6697-4873-903F-9ABE9B765D1D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{31436160-6697-4873-903F-9ABE9B765D1D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{31436160-6697-4873-903F-9ABE9B765D1D}.Release|x86.ActiveCfg = Release|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

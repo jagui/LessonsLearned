@@ -45,11 +45,8 @@
   <ItemGroup>
     <Compile Include="Controller\ApplicationController.cs" />
     <Compile Include="Controller\IApplicationController.cs" />
-    <Compile Include="Controller\IHost.cs" />
-    <Compile Include="Controller\IView.cs" />
     <Compile Include="EventAggregator\EventHandlerOptions.cs" />
     <Compile Include="EventAggregator\EventHandlers.cs" />
-    <Compile Include="EventAggregator\EventPublisher.cs" />
     <Compile Include="EventAggregator\EventHandlerProxiesRegistry.cs" />
     <Compile Include="EventAggregator\IEventHandlerProxy.cs" />
     <Compile Include="EventAggregator\LatchManager.cs" />
@@ -60,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\mercurial_local\caliburnmicro\src\Caliburn.Micro.WinForms\Caliburn.Micro.WinForms.csproj">
+      <Project>{2CA4926C-3F23-49B4-8F7A-74BC1F1651BB}</Project>
+      <Name>Caliburn.Micro.WinForms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LessonsLearned.DomainModel\LessonsLearned.DomainModel.csproj">
       <Project>{61FC25B0-1246-4F5D-82D1-8F2A53A7282F}</Project>
       <Name>LessonsLearned.DomainModel</Name>

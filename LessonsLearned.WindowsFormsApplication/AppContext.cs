@@ -4,22 +4,22 @@ using LessonsLearned.WindowsFormsApplication.VerificationWorkflow;
 
 namespace LessonsLearned.WindowsFormsApplication
 {
-    public class AppContext : ApplicationContext
+    public class AppContext : Caliburn.Micro.ApplicationContext
     {
 
         private IContainer Container { get; set; }
 
         public AppContext(IContainer container)
+            : base(GetMainForm(container))
         {
             Container = container;
-            MainForm = GetMainForm();
         }
 
-        private Form GetMainForm()
+        private static Form GetMainForm(IContainer container)
         {
             var mainForm = new WorkflowChooserView();
-            Container.Inject<IWorkflowChooserView>(mainForm);
-            var presenter = Container.GetInstance<WorkflowChooserPresenter>();
+            container.Inject<IWorkflowChooserView>(mainForm);
+            var presenter = container.GetInstance<WorkflowChooserPresenter>();
             presenter.Run();
             return mainForm;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LessonsLearned.Application.Controller;
 using LessonsLearned.DomainModel.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LessonsLearned.Application.EventAggregator;
@@ -20,7 +21,7 @@ namespace LessonsLearned.Application.UnitTests
             serviceLocator.Stub(s => s.GetAllInstances<IEventHandler<DummyEvent>>()).Return(
                 Enumerable.Empty<IEventHandler<DummyEvent>>());
 
-            var publisher = new EventPublisher(serviceLocator);
+            IEventPublisher publisher = new ApplicationController(serviceLocator);
             var eventHandler = new DummyEventHandler();
             publisher.Register<DummyEvent>(eventHandler.Handle);
 
@@ -36,7 +37,7 @@ namespace LessonsLearned.Application.UnitTests
             var serviceLocator = MockRepository.GenerateStub<IServiceLocator>();
             serviceLocator.Stub(s => s.GetAllInstances<IEventHandler<DummyEvent>>()).Return(new[] {eventHandler});
 
-            var publisher = new EventPublisher(serviceLocator);
+            IEventPublisher publisher = new ApplicationController(serviceLocator);
 
             const string dummy = "dummy";
             publisher.Publish(new DummyEvent { DummyString = dummy });

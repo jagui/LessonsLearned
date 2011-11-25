@@ -3,7 +3,7 @@
 namespace LessonsLearned.WindowsFormsApplication
 {
 
-    public interface IView<TPresenter> : IView
+    public interface IView<TPresenter>
     {
         TPresenter Presenter { get; set; }
         void Run();

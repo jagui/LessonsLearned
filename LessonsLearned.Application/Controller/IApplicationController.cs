@@ -1,11 +1,13 @@
 using System;
+using Caliburn.Micro;
+using LessonsLearned.DomainModel.Common;
+
 namespace LessonsLearned.Application.Controller
 {
-    public interface IApplicationController : IHost
+    public interface IApplicationController : IEventPublisher
     {
         void Execute<T>(T commandData);
-        void Raise<T>(T eventData);
-        void Register<T>(Action<T> handler);
-        void SetHost(IHost host);
+        void SetConductor(IConductor conductor);
+        void Activate(Screen view);
     }
 }

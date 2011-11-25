@@ -24,7 +24,8 @@ namespace LessonsLearned.DomainModel.Workflows.PersonEnrolment
             {
                 DateOfBirth = commandData.EnrolPersonFormDto.DateOfBirth,
                 Forename = commandData.EnrolPersonFormDto.Forename,
-                Surname = commandData.EnrolPersonFormDto.Surname
+                Surname = commandData.EnrolPersonFormDto.Surname,
+                Comments = "enroled"
             });
             _repository.PersistAll();
         }

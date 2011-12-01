@@ -34,7 +34,7 @@ namespace LessonsLearned.Application.WinForms.UnitTests
             {
                 get
                 {
-                    var notification = new Juanagui.Validation.Notification();
+                    var notification = new Notification();
                     Juanagui.Validation.Validator.Validate(this, notification);
                     return notification[columnName];
                 }

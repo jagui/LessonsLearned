@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Validation\MustBeTitleCaseAttribute.cs" />
     <Compile Include="Workflows\PersonEnrolment\PersonEnrolmentWorkflow.cs" />
     <Compile Include="Workflows\PersonVerification\Activities\SearchPersonDetailsActivity.cs" />
     <Compile Include="Workflows\PersonEnrolment\Commands\EnrolPersonCommand.cs" />
@@ -81,6 +82,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
